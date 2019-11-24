@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 	example1();
 	std::cout << std::endl << std::endl;
 
+	std::srand(static_cast<unsigned int>(std::time(nullptr)));
 	std::cout << "EXAMPLE 2" << std::endl;
 	example2();
 	std::cout << std::endl << std::endl;
@@ -24,7 +25,7 @@ int main(int argc, char* argv[])
 
 void example1()
 {
-	const int EPOCHS = 10000, VALUES_SIZE = 8;
+	const int EPOCHS = 100000, VALUES_SIZE = 8;
 
 	NeuroneLinks links;
 	links.setInputValuesCount(3);
@@ -71,7 +72,7 @@ void example1()
 
 void example2()
 {
-	const int EPOCHS = 10000, VALUES_SIZE = 8;
+	const int EPOCHS = 100000, VALUES_SIZE = 8;
 
 	InputNeuron *v1 = new InputNeuron;
 	InputNeuron *v2 = new InputNeuron;
@@ -110,7 +111,7 @@ void example2()
 
 	for(int i = 0; i < EPOCHS; i++)
 	{
-		InputValue value = values[rand() % 5];
+		InputValue value = values[rand() % VALUES_SIZE];
 		nn.execute(value);
 		nn.learn(value);
 	}
