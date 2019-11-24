@@ -7,6 +7,7 @@ class InputNeuron : public Neuron
 {
 public:
 	InputNeuron();
+	~InputNeuron();
 };
 
 #endif // INPUTNEURON_H

@@ -1,5 +1,6 @@
 #include "transition.h"
 #include "neuron.h"
+#include <iostream>
 
 Transition::Transition(Neuron *from,
 					   Neuron *to,
@@ -15,7 +16,11 @@ Transition::Transition(Neuron *from,
 
 Transition::~Transition()
 {
-	delete m_from;
+	if(m_from != nullptr)
+	{
+		delete m_from;
+		m_from = nullptr;
+	}
 }
 
 Neuron *Transition::from() const

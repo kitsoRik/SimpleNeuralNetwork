@@ -4,3 +4,8 @@ InputNeuron::InputNeuron()
 {
 
 }
+
+InputNeuron::~InputNeuron()
+{
+
+}

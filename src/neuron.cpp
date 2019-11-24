@@ -14,6 +14,14 @@ Neuron::~Neuron()
 	{
 		delete transition;
 	}
+
+	for(Transition *transition : m_forwardTransitions)
+	{
+		transition->m_from = nullptr;
+	}
+
+	m_backTransitions.clear();
+	m_forwardTransitions.clear();
 }
 
 Transition *Neuron::createTransition(Neuron *to, const double &value)

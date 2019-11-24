@@ -14,10 +14,6 @@ public:
 
 private:
 	std::vector<bool> m_values;
-	bool
-
-
-
-	m_expected;
+	bool m_expected;
 };
 

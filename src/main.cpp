@@ -24,31 +24,34 @@ int main(int argc, char* argv[])
 
 void example1()
 {
+	const int EPOCHS = 10000, VALUES_SIZE = 8;
+
 	NeuroneLinks links;
-	links.setInputValuesCount(4);
+	links.setInputValuesCount(3);
 	links.setIntermediateCounts({2});
 	links.createFillLinks();
-	SimpleNeuralNetwork nn(links, 0.1);
+	SimpleNeuralNetwork nn(links, 0.07);
 
-	InputValue values[5] = {
-		{ {1,1,0,1}, 0 },
-		{ {0,0,1,0}, 1 },
-		{ {0,0,0,1}, 1 },
-		{ {0,0,0,0}, 0 },
-		{ {1,1,1,1}, 1 }
+	InputValue values[VALUES_SIZE] = {
+		{ {0,0,0}, 0 },
+		{ {1,0,0}, 0 },
+		{ {0,1,0}, 0 },
+		{ {0,0,1}, 1 },
+		{ {1,1,0}, 0 },
+		{ {0,1,1}, 1 },
+		{ {1,0,1}, 1 },
+		{ {1,1,1}, 1 }
 	};
 
-	const int N = 1000000;
-
-	for(int i = 0; i < N; i++)
+	for(int i = 0; i < EPOCHS; i++)
 	{
-		InputValue value = values[rand() % 5];
+		InputValue value = values[rand() % VALUES_SIZE];
 		nn.execute(value);
 		nn.learn(value);
 
 	}
 
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < VALUES_SIZE; i++)
 	{
 		InputValue value = values[i];
 
@@ -68,6 +71,8 @@ void example1()
 
 void example2()
 {
+	const int EPOCHS = 10000, VALUES_SIZE = 8;
+
 	InputNeuron *v1 = new InputNeuron;
 	InputNeuron *v2 = new InputNeuron;
 	InputNeuron *v3 = new InputNeuron;
@@ -92,25 +97,25 @@ void example2()
 
 	SimpleNeuralNetwork nn(inputNeurones, resultNeuron, 0.1);
 
-	InputValue values[5] = {
-		{ {1,1,0}, 0 },
-		{ {0,0,1}, 1 },
-		{ {0,0,0}, 1 },
+	InputValue values[VALUES_SIZE] = {
 		{ {0,0,0}, 0 },
+		{ {1,0,0}, 0 },
+		{ {0,1,0}, 0 },
+		{ {0,0,1}, 1 },
+		{ {1,1,0}, 0 },
+		{ {0,1,1}, 1 },
+		{ {1,0,1}, 1 },
 		{ {1,1,1}, 1 }
 	};
 
-	const int N = 1000000;
-
-	for(int i = 0; i < N; i++)
+	for(int i = 0; i < EPOCHS; i++)
 	{
 		InputValue value = values[rand() % 5];
 		nn.execute(value);
 		nn.learn(value);
-
 	}
 
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < VALUES_SIZE; i++)
 	{
 		InputValue value = values[i];
 
