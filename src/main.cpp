@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 	//h21->createTransition(resultNeuron, 0.5);
 	//h22->createTransition(resultNeuron, 0.5);
 
-	SimpleNeuralNetwork nn(inputNeurones, resultNeuron, 0.05);
+	SimpleNeuralNetwork nn(inputNeurones, resultNeuron, 0.2);
 
 	InputValue values[VALUES_SIZE] = {
 		{ {1,1,1,1}, 1 },
