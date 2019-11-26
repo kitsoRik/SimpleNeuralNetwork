@@ -1,4 +1,4 @@
-#include "SimpleNeuralNetwork.h"
+#include "simpleneuralnetwork.h"
 #include "transition.h"
 #include <cstdlib>
 
@@ -22,7 +22,7 @@ SimpleNeuralNetwork::~SimpleNeuralNetwork()
 {
 	delete m_resultNeuron;
 }
-
+#include <iostream>
 void SimpleNeuralNetwork::execute(const InputValue &inputValues)
 {
 	if(inputValues.values().size() != m_inputNeurones.size())
@@ -35,12 +35,18 @@ void SimpleNeuralNetwork::execute(const InputValue &inputValues)
 
 	}
 	m_resultNeuron->executeValue();
+
 }
 
 void SimpleNeuralNetwork::learn(const InputValue &inputValues)
 {
+	if(logicResult() == inputValues.expected())
+		return;
 	m_error = m_resultNeuron->value() - inputValues.expected();
-	m_resultNeuron->learn(m_error, m_learningRate);
+
+	double weightDelta = m_error * sigmoid_dx(m_resultNeuron->m_value);
+
+	m_resultNeuron->learn(weightDelta, m_learningRate);
 }
 
 Neuron *SimpleNeuralNetwork::resultNeuron() const

@@ -38,7 +38,7 @@ void NeuroneLinks::createFillLinks()
 
 			for(Neuron *backNeuron : currentNeurones)
 			{
-				backNeuron->createTransition(neuron, std::rand() % 100 / 100.0);
+				backNeuron->createTransition(neuron, std::rand() % 100 / 100.0 );
 			}
 
 			t_currentNeurones.push_back(neuron);

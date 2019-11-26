@@ -29,6 +29,7 @@ public:
 	inline bool logicResult(const double &bound = 0.5) const { return result() > bound; }
 
 	inline double error() const { return m_error; }
+	inline double precision() const { return 1.0 - std::abs(m_error); }
 
 private:
 	double m_nonSigmoidResult;

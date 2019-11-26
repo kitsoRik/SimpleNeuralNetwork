@@ -16,7 +16,7 @@ public:
 	Transition *createTransition(Neuron *to, const double &value);
 
 	void executeValue();
-	void learn(const double &error, const double &learningRate);
+	void learn(const double &weightDelta, const double &learningRate);
 
 	double value() const;
 	double nonSigmoidValue() const;

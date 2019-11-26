@@ -29,11 +29,13 @@ Transition *Neuron::createTransition(Neuron *to, const double &value)
 	Transition *transition = new Transition(this, to, value);
 	return transition;
 }
-
+#include <iostream>
 void Neuron::executeValue()
 {
 	if(m_backTransitions.size() == 0)
+	{
 		return;
+	}
 	m_nonSigmoidValue = 0;
 	for(Transition *transition : m_backTransitions)
 	{
@@ -47,20 +49,19 @@ void Neuron::executeValue()
 	m_value = sigmoid(m_nonSigmoidValue);
 }
 
-void Neuron::learn(const double &error, const double &learningRate)
+void Neuron::learn(const double &weightDelta, const double &learningRate)
 {
-	double weightDelta = error * sigmoid_dx(m_value);
 	for(Transition *transition : m_backTransitions)
 	{
 		Neuron *neuron = transition->from();
 		double value = transition->m_value;
 
-		value = value - neuron->value() * weightDelta * learningRate;
+		value = value - neuron->value() * learningRate * weightDelta;
 		transition->m_value = value;
 
 		double t_error = value * weightDelta;
 
-		neuron->learn(t_error, learningRate);
+		neuron->learn(weightDelta, learningRate);
 	}
 }
 
